@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "220500487613",
+    "project_id": "my-first-notes-app-3aa9f",
+    "storage_bucket": "my-first-notes-app-3aa9f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220500487613:android:af2388b1b01113edaf36d4",
+        "android_client_info": {
+          "package_name": "com.example.first_lesson"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFb2xIM2rkLyS1JxpdsSSx2jLhBAvzwWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220500487613:android:61f2bc9746856e80af36d4",
+        "android_client_info": {
+          "package_name": "motwkel_idris.com.firebase_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAFb2xIM2rkLyS1JxpdsSSx2jLhBAvzwWE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
