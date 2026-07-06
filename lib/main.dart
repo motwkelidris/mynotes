@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_project/views/login_view.dart';
+import 'package:firebase_project/views/notes_view.dart';
 import 'package:firebase_project/views/register_view.dart';
 import 'package:firebase_project/views/verify_email_view.dart';
 import 'package:flutter/material.dart';
@@ -12,11 +13,17 @@ void main() {
   runApp(
     MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(colorScheme: .fromSeed(seedColor: Colors.deepPurple)),
+      theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          backgroundColor: Colors.blue,
+          foregroundColor: Colors.white,
+        ),
+      ),
       home: const HomePage(),
       routes: {
         '/login': (context) => LoginView(),
         '/register': (context) => RegisterView(),
+        '/notes': (context) => NotesView(),
       },
     ),
   );
@@ -34,17 +41,16 @@ class HomePage extends StatelessWidget {
       builder: (context, snapshot) {
         switch (snapshot.connectionState) {
           case ConnectionState.done:
-          final user = FirebaseAuth.instance.currentUser;
-          if (user!= null){
-            if(user.emailVerified){
-              print('Verified email');
-            }else{
-              return VerifyEmailView();
+            final user = FirebaseAuth.instance.currentUser;
+            if (user != null) {
+              if (user.emailVerified) {
+                return NotesView();
+              } else {
+                return VerifyEmailView();
+              }
+            } else {
+              return LoginView();
             }
-          }else{
-            return LoginView();
-          }
-          return Text('Done');
           default:
             return CircularProgressIndicator();
         }
@@ -52,4 +58,3 @@ class HomePage extends StatelessWidget {
     );
   }
 }
-
