@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_project/constant/routes.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev show log;
 
@@ -77,7 +78,7 @@ class _RegisterViewState extends State<RegisterView> {
           ),
         TextButton(
           onPressed: (){
-      Navigator.pushNamed(context, '/login');
+      Navigator.pushNamed(context, loginRoute);
       },
       child: Text('Already have account?'),
       ),

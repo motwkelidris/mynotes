@@ -5,7 +5,7 @@ import 'package:firebase_project/views/notes_view.dart';
 import 'package:firebase_project/views/register_view.dart';
 import 'package:firebase_project/views/verify_email_view.dart';
 import 'package:flutter/material.dart';
-
+import 'package:firebase_project/constant/routes.dart';
 import 'firebase_options.dart';
 
 void main() {
@@ -21,9 +21,9 @@ void main() {
       ),
       home: const HomePage(),
       routes: {
-        '/login': (context) => LoginView(),
-        '/register': (context) => RegisterView(),
-        '/notes': (context) => NotesView(),
+        loginRoute: (context) => LoginView(),
+        registerRoute: (context) => RegisterView(),
+        notesRoute: (context) => NotesView(),
       },
     ),
   );
