@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as dev show log;
 
 class RegisterView extends StatefulWidget {
   const RegisterView({super.key});
@@ -58,17 +59,17 @@ class _RegisterViewState extends State<RegisterView> {
                   email: email,
                   password: password,
                 );
-                print(',,,,,\n $userCredential \n ,,,,,,,,');
+                dev.log(',,,,,\n $userCredential \n ,,,,,,,,');
               } on FirebaseAuthException catch (e) {
-                print(e.code);
+                dev.log(e.code);
                 if (e.code == 'email-already-in-use') {
-                  print('Existing account!');
+                  dev.log('Existing account!');
                 } else if (e.code == 'channel-error') {
-                  print('Fill fields!');
+                  dev.log('Fill fields!');
                 } else if (e.code == 'invalid-email') {
-                  print('Type a valid email!');
+                  dev.log('Type a valid email!');
                 } else if (e.code == 'weak-password') {
-                  print('Password must be 6 size length!');
+                  dev.log('Password must be 6 size length!');
                 }
               }
             },

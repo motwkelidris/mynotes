@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'dart:developer' as dev show log;
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
@@ -58,16 +61,15 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
-                print(',,,,,\n $userCredential \n ,,,,,,,,');
                 Navigator.of(context).pushNamedAndRemoveUntil('/notes',(_)=>false);
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'invalid-credential') {
-                  print('not you');
+                  dev.log('not you');
                 } else if(e.code=='network-request-failed'){
-                  print('Check your network');
+                  dev.log('Check your network');
                 }
                 else {
-                  print(e.code);
+                  dev.log(e.code);
                 }
               }
             },
