@@ -56,11 +56,15 @@ class _RegisterViewState extends State<RegisterView> {
               try {
                 final email = _email.text;
                 final password = _password.text;
-                final userCredential = await FirebaseAuth.instance
+                await FirebaseAuth.instance
                     .createUserWithEmailAndPassword(
                   email: email,
                   password: password,
                 );
+                final user= FirebaseAuth.instance.currentUser;
+                dev.log(user.toString());
+                await user?.sendEmailVerification();
+                Navigator.of(context).pushNamed(verifyEmailRoute);
                 //dev.log(',,,,,\n $userCredential \n ,,,,,,,,');
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'email-already-in-use') {
@@ -82,7 +86,7 @@ class _RegisterViewState extends State<RegisterView> {
           ),
         TextButton(
           onPressed: (){
-      Navigator.pushNamed(context, loginRoute);
+      Navigator.of(context).pushNamedAndRemoveUntil(loginRoute ,(_)=>false);
       },
       child: Text('Already have account?'),
       ),

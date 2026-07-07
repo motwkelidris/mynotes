@@ -81,7 +81,7 @@ class _LoginViewState extends State<LoginView> {
           ),
           TextButton(
             onPressed: (){
-              Navigator.pushNamed(context,registerRoute);
+              Navigator.of(context).pushNamedAndRemoveUntil(registerRoute,(_)=>false);
             },
             child: Text('Register new account?'),
           ),
