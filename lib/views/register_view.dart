@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/constant/routes.dart';
+import 'package:firebase_project/utitities/show_error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev show log;
 
@@ -60,18 +61,21 @@ class _RegisterViewState extends State<RegisterView> {
                   email: email,
                   password: password,
                 );
-                dev.log(',,,,,\n $userCredential \n ,,,,,,,,');
+                //dev.log(',,,,,\n $userCredential \n ,,,,,,,,');
               } on FirebaseAuthException catch (e) {
-                dev.log(e.code);
                 if (e.code == 'email-already-in-use') {
-                  dev.log('Existing account!');
+                  await showErrorDialog(context, 'Existing account!');
                 } else if (e.code == 'channel-error') {
-                  dev.log('Fill fields!');
+                  await showErrorDialog(context, 'Fill fields!');
                 } else if (e.code == 'invalid-email') {
-                  dev.log('Type a valid email!');
+                  await showErrorDialog(context, 'Type a valid email!');
                 } else if (e.code == 'weak-password') {
-                  dev.log('Password must be 6 size length!');
+                  await showErrorDialog(context, 'Password must be 6 size length!');
+                }else{
+                  await showErrorDialog(context, "Error: ${e.code}");
                 }
+              }catch(e){
+                await showErrorDialog(context, e.toString());
               }
             },
             child: Text('Register'),

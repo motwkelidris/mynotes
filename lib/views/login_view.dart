@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_project/constant/routes.dart';
+import 'package:firebase_project/utitities/show_error_dialog.dart';
 import 'package:flutter/material.dart';
 import 'dart:developer' as dev show log;
 
@@ -60,16 +61,20 @@ class _LoginViewState extends State<LoginView> {
                   email: email,
                   password: password,
                 );
-                Navigator.of(context).pushNamedAndRemoveUntil(notesRoute,(_)=>false);
+                  Navigator.of(context).pushNamedAndRemoveUntil(notesRoute,(_)=>false);
               } on FirebaseAuthException catch (e) {
                 if (e.code == 'invalid-credential') {
-                  dev.log('not you');
+                   await showErrorDialog(context,'Not you',);
                 } else if(e.code=='network-request-failed'){
-                  dev.log('Check your network');
+                  await showErrorDialog(context,'Check your network');
+                } else if(e.code=='invalid-email'){
+                  await showErrorDialog(context,'Invalid email');
                 }
                 else {
-                  dev.log(e.code);
+                  await showErrorDialog(context, "Error: ${e.code}",);
                 }
+              }catch(e){
+                await showErrorDialog(context, e.toString());
               }
             },
             child: Text('Login'),
@@ -85,3 +90,4 @@ class _LoginViewState extends State<LoginView> {
     );
   }
 }
+
